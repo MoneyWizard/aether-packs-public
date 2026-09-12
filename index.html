@@ -60,14 +60,56 @@
       max-width: 640px;
       margin: 0 auto 2rem;
     }
+    
+    /* Interactive Teaser Section */
+    .teaser-section {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px dashed rgba(16, 185, 129, 0.3);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem auto 3rem;
+      text-align: center;
+    }
+    .teaser-section h2 {
+      color: var(--success);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .drag-tools {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .drag-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #1f2937;
+      color: #6ee7b7;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 1px solid #059669;
+      cursor: grab;
+      transition: all 0.2s;
+    }
+    .drag-btn:hover { background: #064e3b; transform: scale(1.05); }
+    .drag-btn:active { cursor: grabbing; }
+
+    /* Pricing Section */
     .pricing-box {
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: 16px;
       padding: 2rem;
       max-width: 480px;
-      margin: 2rem auto;
+      margin: 0 auto 3rem;
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      text-align: center;
     }
     .price-tag {
       font-size: 2.5rem;
@@ -96,20 +138,14 @@
       transition: background 0.2s, transform 0.1s;
       box-shadow: 0 4px 12px var(--accent-glow);
     }
-    .cta-button:hover {
-      background: #2563eb;
-      transform: translateY(-1px);
-    }
-    .guarantee {
-      font-size: 0.85rem;
-      color: var(--muted);
-      text-align: center;
-    }
+    .cta-button:hover { background: #2563eb; transform: translateY(-1px); }
+    .guarantee { font-size: 0.85rem; color: var(--muted); }
+
+    /* Features */
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      margin-top: 3rem;
     }
     .feature-card {
       background: var(--surface);
@@ -117,15 +153,8 @@
       border-radius: 12px;
       padding: 1.5rem;
     }
-    .feature-card h3 {
-      color: #93c5fd;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-    .feature-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    .feature-card h3 { color: #93c5fd; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .feature-card p { color: var(--muted); font-size: 0.95rem; }
     footer {
       text-align: center;
       margin-top: 4rem;
@@ -144,17 +173,43 @@
       <p class="lead">Zero-install operator tools. Drag once. Work anywhere. 28 specialized bookmarklets across SEO, accessibility, QA, and operations. No app store bloat, no telemetry.</p>
     </header>
 
+    <!-- FREE TEASER SECTION -->
+    <div class="teaser-section">
+      <h2>Experience the magic right now.</h2>
+      <p style="color: var(--muted); font-size: 1.05rem;">Drag any of these 3 free tools directly to your browser's bookmarks bar. Click them on any page to see them work instantly without installing anything.</p>
+      
+      <div class="drag-tools">
+        <!-- Copy MD Link -->
+        <a class="drag-btn" href="javascript:(function(){const t=(window.getSelection&&String(window.getSelection()).trim())||document.title||location.hostname;const u=location.href;const md='['+t.replace(/[\[\]]/g,'')+']('+u+')';function done(){const n=document.createElement('div');n.textContent='Copied: '+md;n.style.cssText='position:fixed;z-index:2147483647;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:999px;font:14px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.35)';document.body.appendChild(n);setTimeout(function(){n.remove();},1800);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(md).then(done).catch(function(){prompt('Copy markdown link:',md);});}else{prompt('Copy markdown link:',md);}})();" title="Drag to bookmarks bar">
+          ☷ Copy MD Link
+        </a>
+
+        <!-- Clean URL -->
+        <a class="drag-btn" href="javascript:(function(){const kill=/^(utm_|utm$|fbclid|gclid|gclsrc|dclid|msclkid|mc_eid|mc_cid|igshid|si|spm|ref_|referrer|ncid|icid|ocid|mkt_tok|yclid|_hsenc|_hsmi|vero_id|wickedid|twclid)$/i;const url=new URL(location.href);Array.from(url.searchParams.keys()).forEach(function(k){if(kill.test(k)||/^utm_/i.test(k))url.searchParams.delete(k);});url.hash=url.hash.replace(/[#&](utm_[^=]+|fbclid|gclid)=[^&]*/gi,'');const clean=url.toString().replace(/\?$/,'');function toast(m){const n=document.createElement('div');n.textContent=m;n.style.cssText='position:fixed;z-index:2147483647;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:999px;font:14px/1.3 system-ui,sans-serif;max-width:90vw';document.body.appendChild(n);setTimeout(function(){n.remove();},2200);}try{history.replaceState(null,'',clean);}catch(e){}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(clean).then(function(){toast('Clean URL copied');}).catch(function(){prompt('Clean URL',clean);});}else{prompt('Clean URL',clean);}})();" title="Drag to bookmarks bar">
+          ✂ Clean Tracking URL
+        </a>
+
+        <!-- Page Snapshot -->
+        <a class="drag-btn" href="javascript:(function(){var old=document.getElementById('__bk_snap');if(old){old.remove();return;}var text=(document.body&&document.body.innerText||'').replace(/\s+/g,' ').trim();var words=text?text.split(' ').length:0;var mins=Math.max(1,Math.round(words/230));var imgs=Array.prototype.slice.call(document.images).filter(function(i){return i.naturalWidth>1||i.width>1;}).length;var hrefs={};var linkCount=0;Array.prototype.forEach.call(document.links,function(a){if(a.href&&!hrefs[a.href]){hrefs[a.href]=1;linkCount++;}});var descMeta=document.querySelector('meta[name=&quot;description&quot;]');var desc=descMeta&&descMeta.content?descMeta.content:'(none)';var canonEl=document.querySelector('link[rel=&quot;canonical&quot;]');var canon=canonEl&&canonEl.href?canonEl.href:location.href;function esc(s){return String(s).replace(/[&amp;&lt;&gt;&quot;']/g,function(c){return ({'&amp;':'&amp;amp;','&lt;':'&amp;lt;','&gt;':'&amp;gt;','&quot;':'&amp;quot;',&quot;'&quot;:'&amp;#39;'})[c];});}var box=document.createElement('div');box.id='__bk_snap';box.innerHTML='&lt;b style=&quot;font-size:16px&quot;&gt;Page snapshot&lt;/b&gt;&lt;div style=&quot;margin-top:8px&quot;&gt;&lt;b&gt;Title&lt;/b&gt;&lt;br&gt;'+esc(document.title)+'&lt;/div&gt;&lt;div style=&quot;margin-top:8px&quot;&gt;&lt;b&gt;URL&lt;/b&gt;&lt;br&gt;'+esc(canon)+'&lt;/div&gt;&lt;div style=&quot;margin-top:8px&quot;&gt;'+words.toLocaleString()+' words · ~'+mins+' min read&lt;br&gt;'+imgs+' images · '+linkCount+' unique links&lt;/div&gt;&lt;div style=&quot;margin-top:8px&quot;&gt;&lt;b&gt;Description&lt;/b&gt;&lt;br&gt;'+esc(desc)+'&lt;/div&gt;&lt;div style=&quot;margin-top:10px;opacity:.7&quot;&gt;Click this card to close&lt;/div&gt;';box.style.cssText='position:fixed;z-index:2147483647;top:16px;right:16px;width:min(420px,92vw);background:#111827;color:#f3f4f6;padding:16px 18px;border-radius:14px;font:14px/1.45 system-ui,sans-serif;box-shadow:0 16px 40px rgba(0,0,0,.4);border:1px solid #374151;cursor:pointer';box.onclick=function(){box.remove();};document.documentElement.appendChild(box);})();" title="Drag to bookmarks bar">
+          ⚡ Page Snapshot
+        </a>
+      </div>
+    </div>
+
+    <!-- PRICING & CHECKOUT -->
     <div class="pricing-box">
       <div style="font-size: 0.85rem; color: #93c5fd; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Limited Launch Special</div>
       <div class="price-tag">$37 <span>$97</span></div>
-      <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem;">Lifetime access to all 4 operator packs + source code installers.</p>
+      <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem;">Unlock lifetime access to all 28 tools across 4 operator packs.</p>
       
-      <!-- Replace href with real Stripe/Gumroad checkout link -->
-      <a href="https://buy.stripe.com/6oUfZa6Ax0sP8vL9OE7bW00" class="cta-button">Get Instant Access — $37</a>
+      <!-- Connect Stripe or Gumroad here -->
+      <a href="https://buy.stripe.com/6oUfZa6Ax0sP8vL9OE7bW00" class="cta-button">Get Instant Access — $37 (Stripe)</a>
+      <a href="https://hexnemesis.gumroad.com/l/vvmzs" class="cta-button" style="background:#ff90e8; color:#000;">Buy on Gumroad — $37</a>
       
-      <div class="guarantee">🔒 Instant secure download · Zero subscriptions · Works in Chrome, Edge, Safari & Firefox</div>
+      <div class="guarantee">🔒 Instant secure download · Zero subscriptions · Lifetime updates</div>
     </div>
 
+    <!-- FEATURES GRID -->
     <div class="features">
       <div class="feature-card">
         <h3>SEO Operator Pack (7 Tools)</h3>
@@ -162,11 +217,11 @@
       </div>
       <div class="feature-card">
         <h3>A11y Sentinel Pack (7 Tools)</h3>
-        <p>Landmark inspection, contrast checking, focus order tracers, form label validation, and WCAG text spacing stress-tests.</p>
+        <p>Landmark inspection, contrast checking, focus order tracers, form label validation, and WCAG text spacing tests.</p>
       </div>
       <div class="feature-card">
         <h3>QA Forge Pack (10 Tools)</h3>
-        <p>Smart form auto-fill for React/Vue, performance snapshots, Core Web Vitals live overlay, and precise CSS/XPath selectors.</p>
+        <p>Smart form auto-fill for React/Vue, performance snapshots, Core Web Vitals live overlay, and CSS/XPath selectors.</p>
       </div>
       <div class="feature-card">
         <h3>Ops & Content Pack (4 Tools)</h3>
@@ -180,5 +235,3 @@
   </div>
 </body>
 </html>
-
-
